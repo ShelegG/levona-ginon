@@ -1,0 +1,2290 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>לבונה גינון ונוי | Levona Ginon</title>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --green-dark: #1a3c2a;
+            --green-mid: #2d6a4f;
+            --green-light: #52b788;
+            --green-pale: #d8f3dc;
+            --gold: #c9a227;
+            --white: #ffffff;
+            --off-white: #f8faf9;
+            --text-dark: #1a1a1a;
+            --text-light: #555;
+            --shadow: 0 10px 40px rgba(0,0,0,0.1);
+            --radius: 16px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Heebo', sans-serif;
+            color: var(--text-dark);
+            background: var(--off-white);
+            overflow-x: hidden;
+            line-height: 1.8;
+        }
+
+        /* Language Toggle */
+        .lang-toggle {
+            display: flex;
+            gap: 4px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 30px;
+            padding: 4px;
+        }
+
+        .navbar.scrolled .lang-toggle {
+            background: rgba(0,0,0,0.05);
+        }
+
+        .lang-btn {
+            padding: 6px 14px;
+            border: none;
+            border-radius: 24px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            background: transparent;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .navbar.scrolled .lang-btn {
+            color: var(--text-light);
+        }
+
+        .lang-btn.active {
+            background: var(--green-mid);
+            color: var(--white);
+        }
+
+        .navbar.scrolled .lang-btn.active {
+            background: var(--green-mid);
+            color: var(--white);
+        }
+
+        .lang-btn:hover:not(.active) {
+            background: rgba(255,255,255,0.2);
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 0;
+            z-index: 999;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            background: transparent;
+        }
+
+        .navbar.scrolled {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+        }
+
+        .nav-logo {
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .navbar.scrolled .nav-logo {
+            color: var(--green-dark);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .navbar.scrolled .nav-links a {
+            color: var(--text-dark);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background: var(--green-light);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-phone {
+            color: var(--white);
+            font-weight: 700;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .navbar.scrolled .nav-phone {
+            color: var(--green-mid);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            min-height: 700px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(26,60,42,0.85), rgba(45,106,79,0.7)),
+                        url('projects/IronSource/DSCN1144.JPG') center/cover;
+            z-index: -1;
+        }
+
+        .hero-content {
+            color: var(--white);
+            max-width: 800px;
+            padding: 0 20px;
+            animation: fadeUp 1s ease;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 900;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            font-weight: 300;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 14px 36px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-family: 'Heebo', sans-serif;
+        }
+
+        .btn-primary {
+            background: var(--green-light);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: var(--green-mid);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(82,183,136,0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .btn-outline:hover {
+            background: var(--white);
+            color: var(--green-dark);
+        }
+
+        /* Sections */
+        section {
+            padding: 100px 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 900;
+            color: var(--green-dark);
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .section-title .line {
+            width: 60px;
+            height: 4px;
+            background: var(--green-light);
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about {
+            background: var(--white);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-image {
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .about-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border: 3px solid var(--green-light);
+            border-radius: var(--radius);
+            transform: translate(15px, 15px);
+            z-index: -1;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            color: var(--green-dark);
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            color: var(--text-light);
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+        }
+
+        .stats-row {
+            display: flex;
+            gap: 40px;
+            margin-top: 30px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-item .number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--green-mid);
+        }
+
+        .stat-item .label {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        /* Services */
+        .services {
+            background: var(--off-white);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--green-light), var(--green-mid));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--green-pale);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.3rem;
+            color: var(--green-dark);
+            margin-bottom: 12px;
+        }
+
+        .service-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* Gallery */
+        .gallery {
+            background: var(--green-dark);
+            color: var(--white);
+        }
+
+        .gallery .section-title h2 {
+            color: var(--white);
+        }
+
+        .gallery .section-title p {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            border-radius: var(--radius);
+            overflow: hidden;
+            position: relative;
+            height: 300px;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(26,60,42,0.6), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .gallery-item:hover::after {
+            opacity: 1;
+        }
+
+        /* Project Cards */
+        .project-block {
+            margin-bottom: 60px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .project-block h3 {
+            color: var(--white);
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            padding-right: 15px;
+            border-right: 4px solid var(--green-light);
+        }
+
+        /* Carousel */
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .carousel-viewport {
+            position: relative;
+            width: 100%;
+            height: 420px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-radius: var(--radius);
+        }
+
+        .carousel-track {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .carousel-slide {
+            position: absolute;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .carousel-slide.active {
+            width: 70%;
+            height: 100%;
+            z-index: 3;
+            opacity: 1;
+            transform: translateX(0) scale(1);
+        }
+
+        .carousel-slide.prev {
+            width: 22%;
+            height: 75%;
+            z-index: 2;
+            opacity: 0.7;
+            transform: translateX(130%);
+            filter: brightness(0.7);
+        }
+
+        .carousel-slide.next {
+            width: 22%;
+            height: 75%;
+            z-index: 2;
+            opacity: 0.7;
+            transform: translateX(-130%);
+            filter: brightness(0.7);
+        }
+
+        .carousel-slide.hidden {
+            width: 25%;
+            height: 60%;
+            z-index: 0;
+            opacity: 0;
+            transform: translateX(0) scale(0.5);
+        }
+
+        /* Carousel Navigation */
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.9);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: var(--green-dark);
+            box-shadow: 0 3px 15px rgba(0,0,0,0.2);
+            z-index: 10;
+            transition: all 0.3s;
+        }
+
+        .carousel-btn:hover {
+            background: var(--green-light);
+            color: white;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-btn-prev {
+            right: 5px;
+        }
+
+        .carousel-btn-next {
+            left: 5px;
+        }
+
+        /* Carousel Dots */
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .carousel-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .carousel-dot.active {
+            background: var(--green-light);
+            transform: scale(1.3);
+        }
+
+        /* Counter */
+        .carousel-counter {
+            text-align: center;
+            margin-top: 12px;
+            color: rgba(255,255,255,0.6);
+            font-size: 0.85rem;
+        }
+
+        .no-projects {
+            text-align: center;
+            color: rgba(255,255,255,0.6);
+            font-size: 1.1rem;
+            padding: 60px 20px;
+        }
+
+        @media (max-width: 768px) {
+            .carousel-viewport {
+                height: 280px;
+            }
+            .carousel-slide.active { width: 65%; }
+            .carousel-slide.prev, .carousel-slide.next { width: 25%; height: 65%; }
+            .carousel-btn { width: 36px; height: 36px; font-size: 1rem; }
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.92);
+            z-index: 99999;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 85vh;
+            border-radius: 8px;
+            box-shadow: 0 10px 50px rgba(0,0,0,0.5);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: white;
+            font-size: 2.5rem;
+            cursor: pointer;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 2.5rem;
+            cursor: pointer;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            transition: background 0.3s;
+        }
+
+        .lightbox-nav:hover {
+            background: rgba(255,255,255,0.25);
+        }
+
+        .lightbox-prev { right: 20px; }
+        .lightbox-next { left: 20px; }
+
+        /* Vision */
+        .vision {
+            background: linear-gradient(135deg, var(--green-pale), var(--white));
+        }
+
+        .vision-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .vision-content blockquote {
+            font-size: 1.4rem;
+            font-style: italic;
+            color: var(--green-dark);
+            border-right: 4px solid var(--green-light);
+            padding-right: 30px;
+            margin: 40px 0;
+            text-align: right;
+        }
+
+        .vision-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .vision-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: var(--radius);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        .vision-card h4 {
+            color: var(--green-mid);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .vision-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* Hydroponics */
+        .hydro {
+            background: var(--white);
+        }
+
+        .hydro-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hydro-benefits {
+            list-style: none;
+        }
+
+        .hydro-benefits li {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--green-pale);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--text-light);
+        }
+
+        .hydro-benefits li::before {
+            content: '✓';
+            width: 28px;
+            height: 28px;
+            background: var(--green-pale);
+            color: var(--green-mid);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        /* Clients */
+        .clients {
+            background: var(--off-white);
+        }
+
+        .clients-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        .client-logo {
+            background: var(--white);
+            padding: 20px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+        }
+
+        .client-logo:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .client-logo img {
+            max-width: 100%;
+            max-height: 60px;
+            object-fit: contain;
+            filter: grayscale(100%);
+            opacity: 0.7;
+            transition: all 0.3s;
+        }
+
+        .client-logo:hover img {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+
+        /* Contact */
+        .contact {
+            background: var(--green-dark);
+            color: var(--white);
+        }
+
+        .contact .section-title h2 {
+            color: var(--white);
+        }
+
+        .contact .section-title p {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .contact-item .icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(82,183,136,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .contact-item span {
+            font-size: 1.1rem;
+        }
+
+        .contact-item a {
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            padding: 15px 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.1);
+            color: var(--white);
+            font-size: 1rem;
+            font-family: 'Heebo', sans-serif;
+            transition: border-color 0.3s;
+        }
+
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+            color: rgba(255,255,255,0.5);
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--green-light);
+        }
+
+        .contact-form textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .contact-form .btn-primary {
+            align-self: flex-start;
+        }
+
+        /* Footer */
+        footer {
+            background: #0d1f15;
+            color: rgba(255,255,255,0.6);
+            text-align: center;
+            padding: 30px 5%;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--green-light);
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+            font-size: 1.2rem;
+        }
+
+        .social-links a:hover {
+            background: var(--green-mid);
+        }
+
+        /* Skip Link (Accessibility) */
+        .skip-link {
+            position: absolute;
+            top: -100px;
+            right: 0;
+            background: #1565c0;
+            color: white;
+            padding: 12px 24px;
+            z-index: 99999;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 0 0 8px 8px;
+            transition: top 0.3s;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* Accessibility Menu */
+        .a11y-btn {
+            position: fixed;
+            bottom: 100px;
+            left: 30px;
+            width: 55px;
+            height: 55px;
+            background: #1565c0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(21,101,192,0.4);
+            z-index: 1001;
+            cursor: pointer;
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        .a11y-btn:hover {
+            transform: scale(1.1);
+            background: #0d47a1;
+        }
+
+        .a11y-menu {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 320px;
+            max-height: 90vh;
+            background: #fff;
+            border-radius: 16px 16px 0 0;
+            box-shadow: -5px 0 30px rgba(0,0,0,0.2);
+            z-index: 10000;
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+            overflow: hidden;
+            direction: rtl;
+        }
+
+        .a11y-menu.open {
+            transform: translateY(0);
+        }
+
+        .a11y-header {
+            background: #1565c0;
+            color: white;
+            padding: 18px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .a11y-header h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .a11y-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            line-height: 1;
+            padding: 0 5px;
+        }
+
+        .a11y-body {
+            padding: 15px 20px;
+            overflow-y: auto;
+            max-height: calc(90vh - 65px);
+        }
+
+        .a11y-desc {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .a11y-section-title {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #1565c0;
+            text-transform: uppercase;
+            margin: 15px 0 8px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .a11y-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #e8e8e8;
+            border-radius: 8px;
+            background: #fafafa;
+            cursor: pointer;
+            font-family: 'Heebo', sans-serif;
+            font-size: 0.9rem;
+            color: #333;
+            margin-bottom: 6px;
+            transition: all 0.2s;
+            text-align: right;
+        }
+
+        .a11y-option:hover {
+            background: #e3f2fd;
+            border-color: #1565c0;
+        }
+
+        .a11y-option.active {
+            background: #e3f2fd;
+            border-color: #1565c0;
+            color: #1565c0;
+            font-weight: 600;
+        }
+
+        .a11y-icon {
+            width: 30px;
+            height: 30px;
+            background: #e8e8e8;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .a11y-option.active .a11y-icon {
+            background: #1565c0;
+            color: white;
+        }
+
+        .a11y-reset {
+            border-color: #ef5350;
+            color: #ef5350;
+        }
+
+        .a11y-reset:hover {
+            background: #ffebee;
+            border-color: #ef5350;
+        }
+
+        .a11y-statement {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f5f5f5;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .a11y-statement p {
+            margin-bottom: 8px;
+        }
+
+        /* Accessibility states */
+        body.a11y-grayscale { filter: grayscale(100%); }
+        body.a11y-high-contrast { filter: contrast(1.5); }
+        body.a11y-negative { filter: invert(1); }
+        body.a11y-light-bg * { background-color: #fff !important; color: #000 !important; }
+        body.a11y-underline-links a { text-decoration: underline !important; border-bottom: 2px solid currentColor !important; }
+        body.a11y-readable-font * { font-family: Arial, Helvetica, sans-serif !important; }
+        body.a11y-big-cursor, body.a11y-big-cursor * { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Cpath d='M4 4l16 40 6-16 16-6z' fill='black' stroke='white' stroke-width='2'/%3E%3C/svg%3E"), auto !important; }
+        body.a11y-highlight-focus *:focus { outline: 3px solid #ff0000 !important; outline-offset: 2px !important; }
+        body.a11y-stop-animations *, body.a11y-stop-animations *::before, body.a11y-stop-animations *::after { animation: none !important; transition: none !important; }
+
+        /* Screen Reader highlight */
+        body.a11y-screen-reader [data-a11y-readable]:hover,
+        body.a11y-screen-reader p:hover,
+        body.a11y-screen-reader h1:hover,
+        body.a11y-screen-reader h2:hover,
+        body.a11y-screen-reader h3:hover,
+        body.a11y-screen-reader h4:hover,
+        body.a11y-screen-reader li:hover,
+        body.a11y-screen-reader span:hover,
+        body.a11y-screen-reader a:hover,
+        body.a11y-screen-reader blockquote:hover {
+            outline: 3px solid #1565c0 !important;
+            outline-offset: 3px !important;
+            background: rgba(21,101,192,0.05) !important;
+            cursor: pointer !important;
+        }
+
+        .a11y-reader-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #1565c0;
+            color: white;
+            padding: 10px 20px;
+            display: none;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 99999;
+            font-family: 'Heebo', sans-serif;
+            direction: rtl;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+
+        .a11y-reader-bar.active {
+            display: flex;
+        }
+
+        .a11y-reader-bar .reader-text {
+            flex: 1;
+            font-size: 0.9rem;
+            margin: 0 15px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .a11y-reader-bar button {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            padding: 6px 14px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Heebo', sans-serif;
+            font-size: 0.85rem;
+            margin: 0 3px;
+        }
+
+        .a11y-reader-bar button:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        @media (max-width: 768px) {
+            .a11y-menu {
+                width: 100%;
+            }
+            .a11y-btn {
+                bottom: 160px;
+            }
+        }
+
+        /* WhatsApp Float */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 60px;
+            height: 60px;
+            background: #25d366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 20px rgba(37,211,102,0.4);
+            z-index: 1000;
+            transition: transform 0.3s;
+            text-decoration: none;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+
+        .whatsapp-float svg {
+            width: 32px;
+            height: 32px;
+            fill: white;
+        }
+        /* Animations */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Mobile Menu */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--white);
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+
+        .navbar.scrolled .menu-toggle span {
+            background: var(--green-dark);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background: var(--green-dark);
+                flex-direction: column;
+                padding: 80px 30px;
+                transition: right 0.3s ease;
+            }
+
+            .nav-links.open {
+                right: 0;
+            }
+
+            .nav-links a {
+                color: var(--white) !important;
+                font-size: 1.2rem;
+            }
+
+            .about-grid,
+            .hydro-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-row {
+                justify-content: center;
+            }
+
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+
+            .lang-toggle {
+                order: -1;
+                margin-bottom: 20px;
+            }
+        }
+
+        /* English mode */
+        body.en {
+            direction: ltr;
+        }
+
+        body.en .vision-content blockquote {
+            border-right: none;
+            border-left: 4px solid var(--green-light);
+            padding-right: 0;
+            padding-left: 30px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip to content link for keyboard navigation (IS 5568 / WCAG 2.0 AA) -->
+    <a href="#main-content" class="skip-link">דלג לתוכן העיקרי</a>
+
+    <!-- Language Toggle -->
+
+    <!-- Screen Reader Bar -->
+    <div class="a11y-reader-bar" id="readerBar">
+        <span>🔊</span>
+        <span class="reader-text" id="readerText">לחצו על טקסט כדי להאזין</span>
+        <button onclick="pauseReader()" id="pauseBtn">השהה</button>
+        <button onclick="stopReader()">עצור</button>
+        <button onclick="a11yAction('screenReader')">✕ סגור</button>
+    </div>
+
+    <!-- Accessibility Menu -->
+    <div class="a11y-btn" id="a11yBtn" onclick="toggleA11yMenu()" aria-label="תפריט נגישות" role="button" tabindex="0">
+        <svg viewBox="0 0 24 24" fill="white" width="28" height="28"><path d="M12 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm9 7h-6v13h-2v-6h-2v6H9V9H3V7h18v2z"/></svg>
+    </div>
+
+    <div class="a11y-menu" id="a11yMenu" role="dialog" aria-label="תפריט נגישות" aria-hidden="true">
+        <div class="a11y-header">
+            <h3>♿ הצהרת נגישות</h3>
+            <button class="a11y-close" onclick="toggleA11yMenu()" aria-label="סגור תפריט נגישות">&times;</button>
+        </div>
+        <div class="a11y-body">
+            <p class="a11y-desc">אתר זה עומד בדרישות תקנות שוויון זכויות לאנשים עם מוגבלות (IS 5568) ברמת AA לפי הנחיות WCAG 2.0</p>
+            
+            <div class="a11y-section-title">התאמות תצוגה</div>
+            
+            <button class="a11y-option" onclick="a11yAction('fontSize', 'increase')" aria-label="הגדלת טקסט">
+                <span class="a11y-icon">A+</span>
+                <span>הגדלת טקסט</span>
+            </button>
+            <button class="a11y-option" onclick="a11yAction('fontSize', 'decrease')" aria-label="הקטנת טקסט">
+                <span class="a11y-icon">A-</span>
+                <span>הקטנת טקסט</span>
+            </button>
+            <button class="a11y-option" onclick="a11yAction('grayscale')" aria-label="גווני אפור">
+                <span class="a11y-icon">◐</span>
+                <span>גווני אפור</span>
+            </button>
+            <button class="a11y-option" onclick="a11yAction('highContrast')" aria-label="ניגודיות גבוהה">
+                <span class="a11y-icon">◑</span>
+                <span>ניגודיות גבוהה</span>
+            </button>
+            <button class="a11y-option" onclick="a11yAction('negativeContrast')" aria-label="ניגודיות הפוכה">
+                <span class="a11y-icon">◒</span>
+                <span>ניגודיות הפוכה</span>
+            </button>
+            <button class="a11y-option" onclick="a11yAction('lightBg')" aria-label="רקע בהיר">
+                <span class="a11y-icon">☀</span>
+                <span>רקע בהיר</span>
+            </button>
+            <button class="a11y-option" onclick="a11yAction('underlineLinks')" aria-label="הדגשת קישורים">
+                <span class="a11y-icon">🔗</span>
+                <span>הדגשת קישורים</span>
+            </button>
+            <button class="a11y-option" onclick="a11yAction('readableFont')" aria-label="פונט קריא">
+                <span class="a11y-icon">Aa</span>
+                <span>פונט קריא</span>
+            </button>
+            
+            <div class="a11y-section-title">ניווט</div>
+            
+            <button class="a11y-option" onclick="a11yAction('screenReader')" aria-label="הקראת טקסט">
+                <span class="a11y-icon">🔊</span>
+                <span>הקראת טקסט (קורא מסך)</span>
+            </button>
+            <button class="a11y-option" onclick="a11yAction('highlightFocus')" aria-label="הדגשת פוקוס">
+                <span class="a11y-icon">⊡</span>
+                <span>הדגשת פוקוס</span>
+            </button>
+            <button class="a11y-option" onclick="a11yAction('bigCursor')" aria-label="סמן גדול">
+                <span class="a11y-icon">➜</span>
+                <span>סמן גדול</span>
+            </button>
+            <button class="a11y-option" onclick="a11yAction('stopAnimations')" aria-label="עצירת אנימציות">
+                <span class="a11y-icon">⏸</span>
+                <span>עצירת אנימציות</span>
+            </button>
+            
+            <div class="a11y-section-title">איפוס</div>
+            <button class="a11y-option a11y-reset" onclick="a11yReset()" aria-label="איפוס הגדרות נגישות">
+                <span class="a11y-icon">↺</span>
+                <span>איפוס כל ההגדרות</span>
+            </button>
+
+            <div class="a11y-statement">
+                <p><strong>הצהרת נגישות:</strong> אתר לבונה גינון ונוי פועל להנגשת האתר לאנשים עם מוגבלות בהתאם לתקנות שוויון זכויות לאנשים עם מוגבלות (התאמות נגישות לשירות), התשע"ג-2013 ולתקן הישראלי IS 5568 ברמת AA.</p>
+                <p><strong>רכז נגישות:</strong> לבונה גינון ונוי<br>טלפון: 052-5555846<br>נשמח לסייע בכל פנייה בנושא נגישות.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/972525555846" target="_blank" class="whatsapp-float" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </a>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <a href="#" class="nav-logo" data-he="לבונה גינון" data-en="Levona Ginon">לבונה גינון</a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#about" data-he="אודות" data-en="About">אודות</a></li>
+            <li><a href="#services" data-he="שירותים" data-en="Services">שירותים</a></li>
+            <li><a href="#gallery" data-he="גלריה" data-en="Gallery">גלריה</a></li>
+            <li><a href="#hydro" data-he="הידרופוניקה" data-en="Hydroponics">הידרופוניקה</a></li>
+            <li><a href="#clients" data-he="לקוחות" data-en="Clients">לקוחות</a></li>
+            <li><a href="#contact" data-he="צור קשר" data-en="Contact">צור קשר</a></li>
+        </ul>
+        <div class="lang-toggle">
+            <button class="lang-btn active" onclick="setLang('he')">עברית</button>
+            <button class="lang-btn" onclick="setLang('en')">English</button>
+        </div>
+        <a href="tel:052-5555846" class="nav-phone">052-5555846</a>
+        <div class="menu-toggle" id="menuToggle" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero" id="main-content" role="banner">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <h1 data-he="לבונה גינון ונוי" data-en="Levona Landscaping & Design">לבונה גינון ונוי</h1>
+            <p data-he="כל פתרונות הגינון בבית אחד | מעל 15 שנות ניסיון בגינון פנים וחוץ" data-en="All landscaping solutions under one roof | Over 15 years of indoor & outdoor gardening experience">כל פתרונות הגינון בבית אחד | מעל 15 שנות ניסיון בגינון פנים וחוץ</p>
+            <div class="hero-cta">
+                <a href="#contact" class="btn btn-primary" data-he="צרו קשר" data-en="Contact Us">צרו קשר</a>
+                <a href="#services" class="btn btn-outline" data-he="השירותים שלנו" data-en="Our Services">השירותים שלנו</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="about" id="about">
+        <div class="section-title fade-in">
+            <h2 data-he="קצת עלינו" data-en="About Us">קצת עלינו</h2>
+            <p data-he="חברת הגינון המובילה בישראל עם מעל 15 שנות ניסיון" data-en="Israel's leading landscaping company with over 15 years of experience">חברת הגינון המובילה בישראל עם מעל 15 שנות ניסיון</p>
+            <div class="line"></div>
+        </div>
+        <div class="about-grid">
+            <div class="about-image fade-in">
+                <img src="https://images.unsplash.com/photo-1604762524889-3e2fcc145683?w=800&q=80" alt="גינון משרדי - Levona Ginon">
+            </div>
+            <div class="about-text fade-in">
+                <h3 data-he="לבונה שירותי גינון" data-en="Levona Landscaping Services">לבונה שירותי גינון</h3>
+                <p data-he="לבונה גינון הינה חברת הגינון מהמובילות והמנוסות בארץ, לעובדי החברה וותק וניסיון של מעל 15 שנה בתחום גינון פנים וחוץ. מתן שירות מעולה ומענה מקצועי לכל דרישה." data-en="Levona Ginon is one of the leading and most experienced landscaping companies in Israel, with staff possessing over 15 years of expertise in indoor and outdoor gardening. We provide excellent service and professional solutions for every need.">לבונה גינון הינה חברת הגינון מהמובילות והמנוסות בארץ, לעובדי החברה וותק וניסיון של מעל 15 שנה בתחום גינון פנים וחוץ. מתן שירות מעולה ומענה מקצועי לכל דרישה.</p>
+                <p data-he="תכנון נכון של חלל המשרד יכול לשפר רבות את רווחת העובדים. מחקרים מראים שסביבת עבודה ירוקה מעלה את תפוקת העובדים משמעותית." data-en="Proper office space planning can greatly improve employee well-being. Research shows that a green work environment significantly increases employee productivity.">תכנון נכון של חלל המשרד יכול לשפר רבות את רווחת העובדים. מחקרים מראים שסביבת עבודה ירוקה מעלה את תפוקת העובדים משמעותית.</p>
+                <div class="stats-row">
+                    <div class="stat-item">
+                        <div class="number">15+</div>
+                        <div class="label" data-he="שנות ניסיון" data-en="Years Experience">שנות ניסיון</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="number">100+</div>
+                        <div class="label" data-he="משרדים ירוקים" data-en="Green Offices">משרדים ירוקים</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="number">500+</div>
+                        <div class="label" data-he="לקוחות מרוצים" data-en="Happy Clients">לקוחות מרוצים</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="services" id="services">
+        <div class="section-title fade-in">
+            <h2 data-he="השירותים שלנו" data-en="Our Services">השירותים שלנו</h2>
+            <p data-he="פתרונות גינון מקצועיים לכל צורך" data-en="Professional landscaping solutions for every need">פתרונות גינון מקצועיים לכל צורך</p>
+            <div class="line"></div>
+        </div>
+        <div class="services-grid">
+            <div class="service-card fade-in">
+                <div class="service-icon">🌿</div>
+                <h3 data-he="צמחיית פנים" data-en="Indoor Plants">צמחיית פנים</h3>
+                <p data-he="תכנון והקמת גינות פנים, אזורים ירוקים ופינות ישיבה ירוקות למשרדים ומוסדות" data-en="Planning and building indoor gardens, green areas and green seating corners for offices and institutions">תכנון והקמת גינות פנים, אזורים ירוקים ופינות ישיבה ירוקות למשרדים ומוסדות</p>
+            </div>
+            <div class="service-card fade-in">
+                <div class="service-icon">🌳</div>
+                <h3 data-he="צמחיית חוץ" data-en="Outdoor Plants">צמחיית חוץ</h3>
+                <p data-he="גינות גן, גינות גג, פאטיו, פארקים, בריכות נוי וגינון באזורי מגורים" data-en="Garden landscaping, rooftop gardens, patios, parks, ornamental pools and residential area gardening">גינות גן, גינות גג, פאטיו, פארקים, בריכות נוי וגינון באזורי מגורים</p>
+            </div>
+            <div class="service-card fade-in">
+                <div class="service-icon">🧪</div>
+                <h3 data-he="הידרופוניקה" data-en="Hydroponics">הידרופוניקה</h3>
+                <p data-he="שיטת גידול צמחים מתקדמת במצע מנותק - חסכון במים, ללא לכלוך, ירוק כל השנה" data-en="Advanced soilless plant growing method - water saving, no mess, green all year round">שיטת גידול צמחים מתקדמת במצע מנותק - חסכון במים, ללא לכלוך, ירוק כל השנה</p>
+            </div>
+            <div class="service-card fade-in">
+                <div class="service-icon">🎨</div>
+                <h3 data-he="צמחייה מלאכותית" data-en="Artificial Plants">צמחייה מלאכותית</h3>
+                <p data-he="צמחייה מלאכותית באיכות גבוהה למקומות בהם התנאים לא מאפשרים צמחייה טבעית" data-en="High-quality artificial plants for spaces where natural plants cannot thrive">צמחייה מלאכותית באיכות גבוהה למקומות בהם התנאים לא מאפשרים צמחייה טבעית</p>
+            </div>
+            <div class="service-card fade-in">
+                <div class="service-icon">🏢</div>
+                <h3 data-he="מרפסות וגגות ירוקים" data-en="Green Balconies & Rooftops">מרפסות וגגות ירוקים</h3>
+                <p data-he="הקמת מרפסות וגגות ירוקים משלב התכנון ועד המסירה ללקוח" data-en="Building green balconies and rooftops from planning stage to client delivery">הקמת מרפסות וגגות ירוקים משלב התכנון ועד המסירה ללקוח</p>
+            </div>
+            <div class="service-card fade-in">
+                <div class="service-icon">🪴</div>
+                <h3 data-he="אספקת כדים ועיצוב" data-en="Pots Supply & Design">אספקת כדים ועיצוב</h3>
+                <p data-he="מכירת כדים ועיצוב ירוק של חלל המשרד בהתאמה אישית" data-en="Pot sales and custom green design for office spaces">מכירת כדים ועיצוב ירוק של חלל המשרד בהתאמה אישית</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery / Projects (Auto-loaded from /projects folder) -->
+    <section class="gallery" id="gallery">
+        <div class="section-title fade-in">
+            <h2 data-he="הפרויקטים שלנו" data-en="Our Projects">הפרויקטים שלנו</h2>
+            <p data-he="הצצה לפרויקטים שביצענו" data-en="A glimpse at our completed projects">הצצה לפרויקטים שביצענו</p>
+            <div class="line"></div>
+        </div>
+        <div id="projectsContainer"></div>
+    </section>
+
+    <!-- Vision -->
+    <section class="vision" id="vision">
+        <div class="vision-content fade-in">
+            <div class="section-title">
+                <h2 data-he="החזון שלנו" data-en="Our Vision">החזון שלנו</h2>
+                <div class="line"></div>
+            </div>
+            <blockquote data-he="לפתח ולהעשיר את מרחב המחיה שלנו, תוך התחשבות בצרכים הבסיסיים של הלקוח. יצירת מרחבים ירוקים המשפיעה על הגוף והנפש היא המפתח למיצוי הפוטנציאל של כל אחד." data-en="To develop and enrich our living spaces while considering the basic needs of the client. Creating green spaces that affect body and mind is the key to fulfilling everyone's potential.">לפתח ולהעשיר את מרחב המחיה שלנו, תוך התחשבות בצרכים הבסיסיים של הלקוח. יצירת מרחבים ירוקים המשפיעה על הגוף והנפש היא המפתח למיצוי הפוטנציאל של כל אחד.</blockquote>
+            <div class="vision-cards">
+                <div class="vision-card">
+                    <h4 data-he="🌱 אני מאמין" data-en="🌱 I Believe">🌱 אני מאמין</h4>
+                    <p data-he="טיפוח מרחב העבודה שלנו באזורים ירוקים הוא הבסיס לשיווי משקל ולאיכות עבודה גבוהה, שלווה נינוחות והשגיות." data-en="Nurturing our workspace with green areas is the foundation for balance and high-quality work, tranquility, relaxation and achievement.">טיפוח מרחב העבודה שלנו באזורים ירוקים הוא הבסיס לשיווי משקל ולאיכות עבודה גבוהה, שלווה נינוחות והשגיות.</p>
+                </div>
+                <div class="vision-card">
+                    <h4 data-he="👥 צוותי העבודה" data-en="👥 Our Teams">👥 צוותי העבודה</h4>
+                    <p data-he="עובדי החברה עוברים הכשרה יסודית וכפופים למפקחים בעלי ניסיון מוכח של למעלה מ-15 שנה. מנהל החברה שותף פעיל בצרכים היום-יומיים." data-en="Our employees undergo thorough training and are supervised by inspectors with over 15 years of proven experience. The company manager is actively involved in day-to-day needs.">עובדי החברה עוברים הכשרה יסודית וכפופים למפקחים בעלי ניסיון מוכח של למעלה מ-15 שנה. מנהל החברה שותף פעיל בצרכים היום-יומיים.</p>
+                </div>
+                <div class="vision-card">
+                    <h4 data-he="🤝 ליווי צמוד" data-en="🤝 Close Support">🤝 ליווי צמוד</h4>
+                    <p data-he="בכל רגע נתון אנו כאן בשבילכם, לכל מענה בעיה או שינוי. אנו כאן כדי להפוך את יצירת החלל הירוק שלכם לחוויה מהנה." data-en="We are here for you at all times, for any question, problem or change. We're here to make creating your green space an enjoyable experience.">בכל רגע נתון אנו כאן בשבילכם, לכל מענה בעיה או שינוי. אנו כאן כדי להפוך את יצירת החלל הירוק שלכם לחוויה מהנה.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hydroponics -->
+    <section class="hydro" id="hydro">
+        <div class="section-title fade-in">
+            <h2 data-he="הידרופוניקה" data-en="Hydroponics">הידרופוניקה</h2>
+            <p data-he="שיטת גידול צמחים מתקדמת ללא אדמה" data-en="Advanced soilless plant growing method">שיטת גידול צמחים מתקדמת ללא אדמה</p>
+            <div class="line"></div>
+        </div>
+        <div class="hydro-grid">
+            <div class="fade-in">
+                <img src="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?w=700&q=80" alt="הידרופוניקה" style="width:100%;border-radius:var(--radius);box-shadow:var(--shadow);">
+            </div>
+            <div class="fade-in">
+                <p style="color:var(--text-light);margin-bottom:25px;" data-he="הידרופוניקה היא שיטת גידול צמחים במצע מנותק ללא שימוש בהזנה דרך אדמה. כאשר אנחנו מספקים את כל חומרי ההזנה של הצמח דרך המים, אין הוא זקוק לאדמה כדי לגדול. הצמחים ירוקים כל השנה ולא נפגעים משינוי מזג אוויר במשרד." data-en="Hydroponics is a method of growing plants in a detached medium without soil-based nutrition. When we provide all the plant's nutrients through water, it doesn't need soil to grow. The plants stay green all year and are not affected by office climate changes.">הידרופוניקה היא שיטת גידול צמחים במצע מנותק ללא שימוש בהזנה דרך אדמה. כאשר אנחנו מספקים את כל חומרי ההזנה של הצמח דרך המים, אין הוא זקוק לאדמה כדי לגדול. הצמחים ירוקים כל השנה ולא נפגעים משינוי מזג אוויר במשרד.</p>
+                <h3 style="color:var(--green-dark);margin-bottom:15px;" data-he="היתרונות:" data-en="Advantages:">היתרונות:</h3>
+                <ul class="hydro-benefits">
+                    <li data-he="אין צורך באדמה - פחות לכלוך והתקנה קלה" data-en="No soil needed - less mess and easy installation">אין צורך באדמה - פחות לכלוך והתקנה קלה</li>
+                    <li data-he="חסכון משמעותי במים - המים נשארים במערכת" data-en="Significant water savings - water stays in the system">חסכון משמעותי במים - המים נשארים במערכת</li>
+                    <li data-he="שליטה מדויקת בתזונה והדישון - עלויות נמוכות" data-en="Precise nutrition control - low costs">שליטה מדויקת בתזונה והדישון - עלויות נמוכות</li>
+                    <li data-he="אין זיהום אקולוגי וסביבתי" data-en="No ecological or environmental pollution">אין זיהום אקולוגי וסביבתי</li>
+                    <li data-he="מיעוט מזיקים - לא יכולים להגיע מהאדמה" data-en="Fewer pests - they can't come from the soil">מיעוט מזיקים - לא יכולים להגיע מהאדמה</li>
+                    <li data-he="ללא נזקים מחומרי הדברה מסוכנים" data-en="No damage from dangerous pesticides">ללא נזקים מחומרי הדברה מסוכנים</li>
+                    <li data-he="הצמח גדל לממדים גדולים ביחס לשורש" data-en="Plants grow large relative to root size">הצמח גדל לממדים גדולים ביחס לשורש</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clients -->
+    <section class="clients" id="clients">
+        <div class="section-title fade-in">
+            <h2 data-he="לקוחותינו" data-en="Our Clients">לקוחותינו</h2>
+            <p data-he="גאים לעבוד עם החברות המובילות בישראל" data-en="Proud to work with Israel's leading companies">גאים לעבוד עם החברות המובילות בישראל</p>
+            <div class="line"></div>
+        </div>
+        <div class="clients-grid fade-in">
+            <div class="client-logo">
+                <img src="https://static.wixstatic.com/media/d68587_5e5388c0a7dd4e019c4ec67d3a933728~mv2.png/v1/fill/w_233,h_52,al_c,lg_1,q_85,enc_avif,quality_auto/%D7%A7%D7%95%D7%9E%D7%A4%D7%99%D7%95%D7%92%D7%9F.png" alt="Compugen">
+            </div>
+            <div class="client-logo">
+                <img src="https://static.wixstatic.com/media/d68587_2f0bc9e818ff4769bd3fe4e1a8393a28~mv2.png/v1/fill/w_340,h_113,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/iron.png" alt="IronSource">
+            </div>
+            <div class="client-logo">
+                <img src="https://static.wixstatic.com/media/d68587_449884af308e439ead7ca673570bd76f~mv2.jpg/v1/fill/w_270,h_90,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/LABS.jpg" alt="Labs">
+            </div>
+            <div class="client-logo">
+                <img src="https://static.wixstatic.com/media/d68587_304a7f813ad5401eba877a4941c28bb7~mv2.jpg/v1/fill/w_230,h_113,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Samsung-575.jpg" alt="Samsung">
+            </div>
+            <div class="client-logo">
+                <img src="https://static.wixstatic.com/media/d68587_2b41546fc4c64073a707d321e5510447~mv2.jpg/v1/fill/w_214,h_121,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/best_amazon_deals_thumb800.jpg" alt="Amazon">
+            </div>
+            <div class="client-logo">
+                <img src="https://static.wixstatic.com/media/d68587_ae5aa936bfcb4dbaa480a0a3dd9ad42e~mv2.png/v1/fill/w_374,h_76,al_c,lg_1,q_85,enc_avif,quality_auto/logo.png" alt="Client">
+            </div>
+            <div class="client-logo">
+                <img src="https://static.wixstatic.com/media/d68587_8e949f53c7414215add218b93275df67~mv2.png/v1/fill/w_228,h_59,al_c,lg_1,q_85,enc_avif,quality_auto/symantec-logo-top.png" alt="Symantec">
+            </div>
+            <div class="client-logo">
+                <img src="https://static.wixstatic.com/media/d68587_bb7b11ef4da14a07865ae18cb4a997c8~mv2.png/v1/fill/w_239,h_102,al_c,lg_1,q_85,enc_avif,quality_auto/ytshuva_logo.png" alt="Yitshuva">
+            </div>
+            <div class="client-logo">
+                <img src="https://static.wixstatic.com/media/d68587_71f599360c4345519c833cbc28be92d8~mv2.png/v1/fill/w_200,h_102,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/hubz-1.png" alt="Hubz">
+            </div>
+            <div class="client-logo">
+                <img src="https://static.wixstatic.com/media/d68587_e0140889d76d4fc09233cabee26b6ad1~mv2.jpg/v1/fill/w_290,h_90,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/NAYAX.jpg" alt="Nayax">
+            </div>
+            <div class="client-logo">
+                <img src="https://static.wixstatic.com/media/d68587_84d7064783084465be1dfc07cf6b433b~mv2.png/v1/fill/w_270,h_90,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/%D7%90%D7%A8%D7%92%D7%95%D7%A1.png" alt="Argus">
+            </div>
+            <div class="client-logo">
+                <img src="https://static.wixstatic.com/media/d68587_170e125c8974407aa2a65d0ccf22abdc~mv2.png/v1/fill/w_159,h_90,al_c,lg_1,q_85,enc_avif,quality_auto/%D7%A0%D7%AA%D7%9E.png" alt="Natam">
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact" id="contact">
+        <div class="section-title fade-in">
+            <h2 data-he="צור קשר" data-en="Contact Us">צור קשר</h2>
+            <p data-he="נשמח לשמוע מכם ולתכנן את המרחב הירוק שלכם" data-en="We'd love to hear from you and plan your green space">נשמח לשמוע מכם ולתכנן את המרחב הירוק שלכם</p>
+            <div class="line"></div>
+        </div>
+        <div class="contact-grid">
+            <div class="contact-info fade-in">
+                <div class="contact-item">
+                    <div class="icon">📍</div>
+                    <span data-he="פרדסיה, ישראל" data-en="Pardesiya, Israel">פרדסיה, ישראל</span>
+                </div>
+                <div class="contact-item">
+                    <div class="icon">📞</div>
+                    <span><a href="tel:09-8946155">09-8946155</a></span>
+                </div>
+                <div class="contact-item">
+                    <div class="icon">📱</div>
+                    <span><a href="tel:052-5555846">052-5555846</a></span>
+                </div>
+                <div class="contact-item">
+                    <div class="icon"><svg width="20" height="20" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></div>
+                    <span><a href="https://wa.me/972525555846" target="_blank" data-he="שלחו הודעה בוואטסאפ" data-en="Send us a WhatsApp message">שלחו הודעה בוואטסאפ</a></span>
+                </div>
+                <div style="display:flex;gap:15px;margin-top:20px;">
+                    <a href="https://www.facebook.com/Sheleg-Ginon-1758212977773906/" target="_blank" style="width:45px;height:45px;background:rgba(82,183,136,0.2);border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;"><svg width="22" height="22" fill="white" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+                    <a href="https://www.instagram.com/levonaginon/" target="_blank" style="width:45px;height:45px;background:rgba(82,183,136,0.2);border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;"><svg width="22" height="22" fill="white" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+                </div>
+            </div>
+            <form class="contact-form fade-in" onsubmit="event.preventDefault();alert('ההודעה נשלחה בהצלחה!');">
+                <input type="text" placeholder="שם מלא" required data-he-placeholder="שם מלא" data-en-placeholder="Full Name">
+                <input type="email" placeholder="אימייל" required data-he-placeholder="אימייל" data-en-placeholder="Email">
+                <input type="tel" placeholder="טלפון" data-he-placeholder="טלפון" data-en-placeholder="Phone">
+                <textarea placeholder="ספרו לנו על הפרויקט שלכם..." data-he-placeholder="ספרו לנו על הפרויקט שלכם..." data-en-placeholder="Tell us about your project..."></textarea>
+                <button type="submit" class="btn btn-primary" data-he="שלח" data-en="Send">שלח</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-links">
+            <a href="https://www.facebook.com/Sheleg-Ginon-1758212977773906/" target="_blank" aria-label="Facebook"><svg width="20" height="20" fill="white" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+            <a href="https://www.instagram.com/levonaginon/" target="_blank" aria-label="Instagram"><svg width="20" height="20" fill="white" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+            <a href="https://wa.me/972525555846" target="_blank" aria-label="WhatsApp"><svg width="20" height="20" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+        </div>
+        <p data-he="© 2026 לבונה גינון ונוי | כל הזכויות שמורות" data-en="© 2026 Levona Ginon | All Rights Reserved">© 2026 לבונה גינון ונוי | כל הזכויות שמורות</p>
+        <p style="margin-top:8px;">
+            <a href="terms.html" data-he="תקנון שימוש" data-en="Terms of Use">תקנון שימוש</a>
+            <a href="privacy.html" data-he="מדיניות פרטיות" data-en="Privacy Policy">מדיניות פרטיות</a>
+        </p>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('open');
+        }
+
+        // Close menu on link click
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navLinks').classList.remove('open');
+            });
+        });
+
+        // Fade-in on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Language switching
+        let currentLang = 'he';
+
+        function setLang(lang) {
+            currentLang = lang;
+            document.body.className = lang === 'en' ? 'en' : '';
+            document.documentElement.lang = lang;
+            document.documentElement.dir = lang === 'he' ? 'rtl' : 'ltr';
+
+            // Update toggle buttons
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if ((lang === 'he' && btn.textContent === 'עברית') ||
+                    (lang === 'en' && btn.textContent === 'English')) {
+                    btn.classList.add('active');
+                }
+            });
+
+            // Update all text elements
+            document.querySelectorAll('[data-he]').forEach(el => {
+                el.textContent = el.getAttribute(`data-${lang}`);
+            });
+
+            // Update placeholders
+            document.querySelectorAll('[data-he-placeholder]').forEach(el => {
+                el.placeholder = el.getAttribute(`data-${lang}-placeholder`);
+            });
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Accessibility Menu
+        let a11yState = {
+            fontSize: 0,
+            grayscale: false,
+            highContrast: false,
+            negativeContrast: false,
+            lightBg: false,
+            underlineLinks: false,
+            readableFont: false,
+            screenReader: false,
+            highlightFocus: false,
+            bigCursor: false,
+            stopAnimations: false
+        };
+
+        function toggleA11yMenu() {
+            const menu = document.getElementById('a11yMenu');
+            const isOpen = menu.classList.contains('open');
+            menu.classList.toggle('open');
+            menu.setAttribute('aria-hidden', isOpen ? 'true' : 'false');
+            if (!isOpen) {
+                menu.querySelector('.a11y-close').focus();
+            }
+        }
+
+        // Allow keyboard activation of a11y button
+        document.getElementById('a11yBtn').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                toggleA11yMenu();
+            }
+        });
+
+        function a11yAction(action, value) {
+            const body = document.body;
+
+            switch(action) {
+                case 'fontSize':
+                    if (value === 'increase' && a11yState.fontSize < 5) {
+                        a11yState.fontSize++;
+                    } else if (value === 'decrease' && a11yState.fontSize > -2) {
+                        a11yState.fontSize--;
+                    }
+                    document.documentElement.style.fontSize = (100 + a11yState.fontSize * 10) + '%';
+                    break;
+
+                case 'grayscale':
+                    a11yState.grayscale = !a11yState.grayscale;
+                    body.classList.toggle('a11y-grayscale');
+                    // Remove conflicting filters
+                    if (a11yState.grayscale) {
+                        body.classList.remove('a11y-high-contrast', 'a11y-negative');
+                        a11yState.highContrast = false;
+                        a11yState.negativeContrast = false;
+                    }
+                    break;
+
+                case 'highContrast':
+                    a11yState.highContrast = !a11yState.highContrast;
+                    body.classList.toggle('a11y-high-contrast');
+                    if (a11yState.highContrast) {
+                        body.classList.remove('a11y-grayscale', 'a11y-negative');
+                        a11yState.grayscale = false;
+                        a11yState.negativeContrast = false;
+                    }
+                    break;
+
+                case 'negativeContrast':
+                    a11yState.negativeContrast = !a11yState.negativeContrast;
+                    body.classList.toggle('a11y-negative');
+                    if (a11yState.negativeContrast) {
+                        body.classList.remove('a11y-grayscale', 'a11y-high-contrast');
+                        a11yState.grayscale = false;
+                        a11yState.highContrast = false;
+                    }
+                    break;
+
+                case 'lightBg':
+                    a11yState.lightBg = !a11yState.lightBg;
+                    body.classList.toggle('a11y-light-bg');
+                    break;
+
+                case 'underlineLinks':
+                    a11yState.underlineLinks = !a11yState.underlineLinks;
+                    body.classList.toggle('a11y-underline-links');
+                    break;
+
+                case 'readableFont':
+                    a11yState.readableFont = !a11yState.readableFont;
+                    body.classList.toggle('a11y-readable-font');
+                    break;
+
+                case 'highlightFocus':
+                    a11yState.highlightFocus = !a11yState.highlightFocus;
+                    body.classList.toggle('a11y-highlight-focus');
+                    break;
+
+                case 'bigCursor':
+                    a11yState.bigCursor = !a11yState.bigCursor;
+                    body.classList.toggle('a11y-big-cursor');
+                    break;
+
+                case 'stopAnimations':
+                    a11yState.stopAnimations = !a11yState.stopAnimations;
+                    body.classList.toggle('a11y-stop-animations');
+                    break;
+
+                case 'screenReader':
+                    a11yState.screenReader = !a11yState.screenReader;
+                    body.classList.toggle('a11y-screen-reader');
+                    const readerBar = document.getElementById('readerBar');
+                    if (a11yState.screenReader) {
+                        readerBar.classList.add('active');
+                        enableScreenReader();
+                    } else {
+                        readerBar.classList.remove('active');
+                        disableScreenReader();
+                        stopReader();
+                    }
+                    break;
+            }
+
+            updateA11yButtons();
+        }
+
+        function updateA11yButtons() {
+            const buttons = document.querySelectorAll('.a11y-option:not(.a11y-reset)');
+            const states = [
+                false, false, // font size buttons (never marked active)
+                a11yState.grayscale,
+                a11yState.highContrast,
+                a11yState.negativeContrast,
+                a11yState.lightBg,
+                a11yState.underlineLinks,
+                a11yState.readableFont,
+                a11yState.screenReader,
+                a11yState.highlightFocus,
+                a11yState.bigCursor,
+                a11yState.stopAnimations
+            ];
+            buttons.forEach((btn, i) => {
+                if (i < states.length) {
+                    btn.classList.toggle('active', states[i]);
+                }
+            });
+        }
+
+        function a11yReset() {
+            const body = document.body;
+            document.documentElement.style.fontSize = '';
+            body.classList.remove(
+                'a11y-grayscale', 'a11y-high-contrast', 'a11y-negative',
+                'a11y-light-bg', 'a11y-underline-links', 'a11y-readable-font',
+                'a11y-highlight-focus', 'a11y-big-cursor', 'a11y-stop-animations',
+                'a11y-screen-reader'
+            );
+            // Disable screen reader
+            if (a11yState.screenReader) {
+                document.getElementById('readerBar').classList.remove('active');
+                disableScreenReader();
+                stopReader();
+            }
+            a11yState = {
+                fontSize: 0, grayscale: false, highContrast: false,
+                negativeContrast: false, lightBg: false, underlineLinks: false,
+                readableFont: false, screenReader: false, highlightFocus: false,
+                bigCursor: false, stopAnimations: false
+            };
+            updateA11yButtons();
+        }
+
+        // Close a11y menu with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const menu = document.getElementById('a11yMenu');
+                if (menu.classList.contains('open')) {
+                    toggleA11yMenu();
+                    document.getElementById('a11yBtn').focus();
+                }
+            }
+        });
+
+        // Screen Reader (Text-to-Speech)
+        let speechSynth = window.speechSynthesis;
+        let currentUtterance = null;
+        let isPaused = false;
+
+        function readAloud(text) {
+            if (!speechSynth) return;
+            stopReader();
+            
+            currentUtterance = new SpeechSynthesisUtterance(text);
+            
+            // Use voice matching the current page language
+            const voices = speechSynth.getVoices();
+            
+            if (currentLang === 'he') {
+                // Try multiple ways to find a Hebrew voice
+                const hebrewVoice = voices.find(v => 
+                    v.lang === 'he-IL' || 
+                    v.lang === 'he' ||
+                    v.lang.startsWith('he') || 
+                    v.name.toLowerCase().includes('hebrew') ||
+                    v.name.includes('עברית') ||
+                    v.name.toLowerCase().includes('asaf')
+                );
+                if (hebrewVoice) {
+                    currentUtterance.voice = hebrewVoice;
+                    currentUtterance.lang = hebrewVoice.lang;
+                } else {
+                    // Fallback: set lang and let the browser figure it out
+                    currentUtterance.lang = 'he-IL';
+                }
+            } else {
+                const englishVoice = voices.find(v => v.lang.startsWith('en'));
+                if (englishVoice) currentUtterance.voice = englishVoice;
+                currentUtterance.lang = 'en-US';
+            }
+            currentUtterance.rate = 0.9;
+            currentUtterance.pitch = 1;
+            
+            // Update reader bar
+            document.getElementById('readerText').textContent = text.substring(0, 80) + (text.length > 80 ? '...' : '');
+            document.getElementById('pauseBtn').textContent = currentLang === 'he' ? 'השהה' : 'Pause';
+            isPaused = false;
+
+            currentUtterance.onend = function() {
+                document.getElementById('readerText').textContent = currentLang === 'he' ? 'לחצו על טקסט כדי להאזין' : 'Click on text to listen';
+            };
+            
+            currentUtterance.onerror = function() {
+                document.getElementById('readerText').textContent = currentLang === 'he' ? '⚠️ שגיאה בהקראה - נסו דפדפן Chrome' : '⚠️ Error - try Chrome browser';
+            };
+
+            speechSynth.speak(currentUtterance);
+        }
+
+        function pauseReader() {
+            if (!speechSynth) return;
+            if (isPaused) {
+                speechSynth.resume();
+                document.getElementById('pauseBtn').textContent = currentLang === 'he' ? 'השהה' : 'Pause';
+                isPaused = false;
+            } else {
+                speechSynth.pause();
+                document.getElementById('pauseBtn').textContent = currentLang === 'he' ? 'המשך' : 'Resume';
+                isPaused = true;
+            }
+        }
+
+        function stopReader() {
+            if (!speechSynth) return;
+            speechSynth.cancel();
+            isPaused = false;
+            document.getElementById('readerText').textContent = currentLang === 'he' ? 'לחצו על טקסט כדי להאזין' : 'Click on text to listen';
+            document.getElementById('pauseBtn').textContent = currentLang === 'he' ? 'השהה' : 'Pause';
+        }
+
+        function handleReaderClick(e) {
+            const el = e.target.closest('p, h1, h2, h3, h4, li, span, a, blockquote, button, label');
+            if (el && !el.closest('.a11y-menu') && !el.closest('.a11y-reader-bar')) {
+                const text = el.textContent.trim();
+                if (text) {
+                    readAloud(text);
+                }
+            }
+        }
+
+        function enableScreenReader() {
+            document.addEventListener('click', handleReaderClick);
+            // Load voices (some browsers need this)
+            speechSynth.getVoices();
+        }
+
+        function disableScreenReader() {
+            document.removeEventListener('click', handleReaderClick);
+        }
+
+        // Preload voices
+        if (speechSynth) {
+            speechSynth.getVoices();
+            speechSynth.onvoiceschanged = function() {
+                speechSynth.getVoices();
+            };
+        }
+    </script>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+        <div class="lightbox-close" onclick="closeLightbox(event)">&times;</div>
+        <div class="lightbox-nav lightbox-prev" onclick="navigateLightbox(event, -1)">&#8249;</div>
+        <img src="" alt="" id="lightboxImg">
+        <div class="lightbox-nav lightbox-next" onclick="navigateLightbox(event, 1)">&#8250;</div>
+    </div>
+
+    <script src="projects.js"></script>
+    <script>
+        // Render projects from projects.js
+        function renderProjects() {
+            const container = document.getElementById('projectsContainer');
+            if (!container) return;
+
+            if (typeof PROJECTS_DATA === 'undefined' || PROJECTS_DATA.length === 0) {
+                container.innerHTML = '<p class="no-projects" data-he="אין פרויקטים להצגה כרגע" data-en="No projects to display at this time">אין פרויקטים להצגה כרגע</p>';
+                return;
+            }
+
+            buildProjectsHTML(PROJECTS_DATA);
+        }
+
+        function buildProjectsHTML(projects) {
+            const container = document.getElementById('projectsContainer');
+
+            if (!projects || projects.length === 0) {
+                container.innerHTML = '<p class="no-projects" data-he="אין פרויקטים להצגה כרגע" data-en="No projects to display at this time">אין פרויקטים להצגה כרגע</p>';
+                return;
+            }
+
+            let html = '';
+            projects.forEach((project, pIdx) => {
+                html += '<div class="project-block fade-in">';
+                html += '<h3>' + project.name + '</h3>';
+                html += '<div class="carousel-container" id="carousel-' + pIdx + '">';
+                html += '<div class="carousel-viewport">';
+                html += '<div class="carousel-track">';
+                project.images.forEach((img, iIdx) => {
+                    const encodedImg = encodeURI(img).replace(/'/g, "%27");
+                    const stateClass = iIdx === 0 ? 'active' : (iIdx === 1 ? 'next' : (iIdx === project.images.length - 1 ? 'prev' : 'hidden'));
+                    html += '<div class="carousel-slide ' + stateClass + '" data-index="' + iIdx + '">';
+                    html += '<img src="' + encodedImg + '" alt="' + project.name + '" loading="lazy" onclick="openLightbox(\'' + encodedImg + '\')" onerror="this.parentElement.style.display=\'none\'">';
+                    html += '</div>';
+                });
+                html += '</div></div>';
+                // Nav buttons
+                if (project.images.length > 1) {
+                    html += '<button class="carousel-btn carousel-btn-prev" onclick="spinCarousel(' + pIdx + ', -1)">&#8250;</button>';
+                    html += '<button class="carousel-btn carousel-btn-next" onclick="spinCarousel(' + pIdx + ', 1)">&#8249;</button>';
+                    // Dots
+                    html += '<div class="carousel-dots">';
+                    project.images.forEach((_, iIdx) => {
+                        html += '<button class="carousel-dot' + (iIdx === 0 ? ' active' : '') + '" onclick="goToSlide(' + pIdx + ',' + iIdx + ')"></button>';
+                    });
+                    html += '</div>';
+                    html += '<div class="carousel-counter"><span class="counter-current">1</span> / ' + project.images.length + '</div>';
+                }
+                html += '</div></div>';
+            });
+
+            container.innerHTML = html;
+
+            // Re-observe new elements for fade-in
+            container.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+        }
+
+        // Carousel state
+        let carouselStates = {};
+
+        function getCarouselState(pIdx) {
+            if (!carouselStates[pIdx]) {
+                carouselStates[pIdx] = { current: 0 };
+            }
+            return carouselStates[pIdx];
+        }
+
+        function spinCarousel(pIdx, direction) {
+            const carousel = document.getElementById('carousel-' + pIdx);
+            const slides = carousel.querySelectorAll('.carousel-slide');
+            const total = slides.length;
+            if (total <= 1) return;
+
+            const state = getCarouselState(pIdx);
+            state.current = (state.current + direction + total) % total;
+
+            updateCarousel(pIdx, slides, total);
+        }
+
+        function goToSlide(pIdx, slideIdx) {
+            const carousel = document.getElementById('carousel-' + pIdx);
+            const slides = carousel.querySelectorAll('.carousel-slide');
+            const total = slides.length;
+
+            const state = getCarouselState(pIdx);
+            state.current = slideIdx;
+
+            updateCarousel(pIdx, slides, total);
+        }
+
+        function updateCarousel(pIdx, slides, total) {
+            const state = getCarouselState(pIdx);
+            const current = state.current;
+            const prev = (current - 1 + total) % total;
+            const next = (current + 1) % total;
+
+            slides.forEach((slide, i) => {
+                slide.className = 'carousel-slide';
+                if (i === current) slide.classList.add('active');
+                else if (i === prev) slide.classList.add('prev');
+                else if (i === next) slide.classList.add('next');
+                else slide.classList.add('hidden');
+            });
+
+            // Update dots
+            const carousel = document.getElementById('carousel-' + pIdx);
+            const dots = carousel.querySelectorAll('.carousel-dot');
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === current);
+            });
+
+            // Update counter
+            const counter = carousel.querySelector('.counter-current');
+            if (counter) counter.textContent = current + 1;
+        }
+
+        // Touch/swipe support
+        let touchStartX = 0;
+        let touchCarouselId = null;
+
+        document.addEventListener('touchstart', function(e) {
+            const carousel = e.target.closest('.carousel-container');
+            if (carousel) {
+                touchStartX = e.touches[0].clientX;
+                touchCarouselId = parseInt(carousel.id.replace('carousel-', ''));
+            }
+        });
+
+        document.addEventListener('touchend', function(e) {
+            if (touchCarouselId === null) return;
+            const touchEndX = e.changedTouches[0].clientX;
+            const diff = touchStartX - touchEndX;
+            if (Math.abs(diff) > 50) {
+                // In RTL: swipe left = next, swipe right = prev
+                spinCarousel(touchCarouselId, diff > 0 ? 1 : -1);
+            }
+            touchCarouselId = null;
+        });
+
+        // Lightbox functions
+        let lightboxImages = [];
+        let lightboxIndex = 0;
+
+        function openLightbox(src) {
+            // Collect all visible carousel images
+            lightboxImages = [];
+            const activeSlides = document.querySelectorAll('.carousel-slide img');
+            activeSlides.forEach(img => {
+                if (img.src) lightboxImages.push(img.src);
+            });
+            
+            const decodedSrc = decodeURI(src);
+            lightboxIndex = lightboxImages.findIndex(i => decodeURI(i).includes(decodedSrc));
+            if (lightboxIndex === -1) lightboxIndex = 0;
+
+            document.getElementById('lightboxImg').src = lightboxImages[lightboxIndex] || src;
+            document.getElementById('lightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox(e) {
+            if (e.target.classList.contains('lightbox') || e.target.classList.contains('lightbox-close')) {
+                document.getElementById('lightbox').classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        function navigateLightbox(e, dir) {
+            e.stopPropagation();
+            lightboxIndex += dir;
+            if (lightboxIndex < 0) lightboxIndex = lightboxImages.length - 1;
+            if (lightboxIndex >= lightboxImages.length) lightboxIndex = 0;
+            document.getElementById('lightboxImg').src = lightboxImages[lightboxIndex];
+        }
+
+        // Keyboard navigation for lightbox
+        document.addEventListener('keydown', function(e) {
+            const lb = document.getElementById('lightbox');
+            if (!lb.classList.contains('active')) return;
+            if (e.key === 'Escape') { lb.classList.remove('active'); document.body.style.overflow = ''; }
+            if (e.key === 'ArrowLeft') navigateLightbox(e, 1);
+            if (e.key === 'ArrowRight') navigateLightbox(e, -1);
+        });
+
+        // Initialize projects on page load
+        renderProjects();
+    </script>
+</body>
+</html>
